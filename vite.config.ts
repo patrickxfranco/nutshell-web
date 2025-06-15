@@ -4,4 +4,7 @@ import { UserConfig } from 'vite';
 
 export default {
   plugins: [tailwindcss(), tsconfigPaths()],
+  server: {
+    allowedHosts: true,
+  },
 } satisfies UserConfig;

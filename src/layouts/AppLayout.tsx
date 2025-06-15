@@ -1,8 +1,16 @@
 import type { ReactElement } from 'react';
+import { Outlet } from 'react-router';
 
 export function AppLayout(): ReactElement {
-  return <Home />;
+  return (
+    <>
+      <Header />
+      <div>
+        <Outlet />
+      </div>
+    </>
+  );
 }
 
 //REMOVER IMPORTAÇÕES POSTERIOEMENTE
-import { Home } from '@/pages/Home';
+import { Header } from '@/components/Header';

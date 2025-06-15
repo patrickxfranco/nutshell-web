@@ -1,4 +1,7 @@
 import { createRoot } from 'react-dom/client';
+import { RouterProvider } from 'react-router';
+
+import { router } from '@/router';
 
 import { ThemeProvider } from './components/ThemeProvider';
 
@@ -6,9 +9,6 @@ const RootElement: HTMLElement = document.getElementById('root')!;
 
 createRoot(RootElement).render(
   <ThemeProvider>
-    <AppLayout />
+    <RouterProvider router={router}></RouterProvider>
   </ThemeProvider>
 );
-
-// REMOVER IMPORTAÇÕES POSTERIORMENTE
-import { AppLayout } from '@/layouts/AppLayout';
