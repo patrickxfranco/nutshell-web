@@ -8,7 +8,7 @@ import { ThemeProvider } from './components/ThemeProvider';
 const RootElement: HTMLElement = document.getElementById('root')!;
 
 createRoot(RootElement).render(
-  <ThemeProvider>
+  <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
     <RouterProvider router={router}></RouterProvider>
   </ThemeProvider>
 );

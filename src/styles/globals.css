@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@import "tw-animate-css";
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -108,6 +108,28 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+/* Scrollbar invisível */
+
+html {
+  scrollbar-width: none;
+}
+body::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+body::-webkit-scrollbar-thumb {
+  background: transparent !important;
+}
+body::-webkit-scrollbar-button {
+  display: none;
+  height: 0;
+  width: 0;
+}
+body::-webkit-scrollbar-corner {
+  background: transparent !important;
 }
 
 @layer base {

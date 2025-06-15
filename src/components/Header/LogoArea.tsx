@@ -2,7 +2,9 @@ import { Plus } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 
-export function LogoArea() {
+import type { ReactElement } from 'react';
+
+export function LogoArea(): ReactElement {
   return (
     <>
       <Button size="icon" variant="secondary">
