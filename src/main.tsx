@@ -4,4 +4,11 @@ import { ThemeProvider } from './components/ThemeProvider';
 
 const RootElement: HTMLElement = document.getElementById('root')!;
 
-createRoot(RootElement).render(<ThemeProvider>Hello World</ThemeProvider>);
+createRoot(RootElement).render(
+  <ThemeProvider>
+    <AppLayout />
+  </ThemeProvider>
+);
+
+// REMOVER IMPORTAÇÕES POSTERIORMENTE
+import { AppLayout } from '@/layouts/AppLayout';
