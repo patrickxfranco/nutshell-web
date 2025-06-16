@@ -1,9 +1,10 @@
 import type { ReactElement } from 'react';
+import { MobileView } from '@/pages/Home/MobileView';
 
 export function Home(): ReactElement {
   return (
-    <div className="flex flex-col *:font-black *:text-[24px]">
-      <span>AAAAA</span>
+    <div className="flex flex-col mx-8 pt-4">
+      <MobileView />
     </div>
   );
 }

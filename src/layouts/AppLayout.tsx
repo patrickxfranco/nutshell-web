@@ -7,7 +7,7 @@ export function AppLayout(): ReactElement {
   return (
     <div className="flex flex-col h-screen">
       <Header />
-      <div className="pt-16">
+      <div className="pt-17">
         <Outlet />
       </div>
     </div>
