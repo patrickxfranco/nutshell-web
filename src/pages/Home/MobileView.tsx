@@ -1,20 +1,20 @@
 import { Star } from 'lucide-react';
 
-import { Card } from '@/components/Card/card';
+import { Card } from '@/components/Card';
 
 import type { ReactElement } from 'react';
 
 export function MobileView(): ReactElement {
   return (
     <>
-      <div className="sm:hidden flex flex-col gap-1">
+      <div className="sm:hidden flex flex-col gap-1 my-6">
         <div className="flex flex-row items-center gap-3">
           <Star size={18} className="fill-amber-300 text-amber-300" />
           <h1 className="font-bold text-xl">Meus Conteúdos</h1>
         </div>
         <p className="ml-7 font-light text-muted-foreground text-xs">Os filmes e séries que você mais gosta listados abaixo</p>
       </div>
-      <main className="flex flex-col gap-4 mt-4">
+      <main className="flex flex-col gap-4">
         <Card
           name="Stranger Things"
           description="Situada no início dos anos 1980, Stranger Things se passa na cidade rural fictícia de Hawkins, Indiana. Como fachada, o laboratório da região realizava experimentos científicos para o Departamento de Energia Americano, quando na realidade, os pesquisadores ali investiram em experimentos com o paranormal e o sobrenatural, incluindo o uso de cobaias humanas. Não intencionalmente, eles criaram um portal para uma dimensão alternativa conhecida como Mundo Invertido, o que iria impactar a vida dos residentes da pequena cidade. Em 1983, quando Will Byers (Noah Schnapp), um menino de 12 anos, desaparece misteriosamente, o xerife Jim Hopper (David Harbour) inicia uma operação para encontrá-lo. Enquanto isso, Mike (Finn Wolfhard), Dustin (Gaten Matarazzo) e Lucas (Caleb McLaughlin), melhores amigos de Will, decidem procurá-lo por conta própria. Mas as investigações acabam levando o grupo em direção aos experimentos secretos do governo e a Eleven (Millie Bobby Brown), uma peculiar menina perdida na floresta. Assim como as crianças, a mãe Joyce Byers (Winona Ryder) está determinada e fará o impossível para rever o filho."

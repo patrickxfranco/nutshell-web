@@ -33,9 +33,11 @@ export function Card({ name, description, coverUrl, logo, type }: CardProps): Re
       <img
         src={coverUrl}
         alt={`Imagem de ${name}`}
-        className="brightness-30 group-hover:brightness-100 saturate-30 group-hover:saturate-150 w-full h-full object-cover aspect-video group-hover:scale-102"
+        className="brightness-30 group-active:brightness-100 group-hover:brightness-100 saturate-30 group-active:saturate-150 group-hover:saturate-150 w-full h-full object-cover aspect-video group-active:scale-102 group-hover:scale-102"
       />
-      <div className="top-0 left-0 absolute group-hover:opacity-0 p-4 group-hover:-translate-x-5">{renderLogoOrName()}</div>
+      <div className="top-0 left-0 absolute group-active:opacity-0 group-hover:opacity-0 p-4 group-active:-translate-x-5 group-hover:-translate-x-5">
+        {renderLogoOrName()}
+      </div>
       {/* <Badge
         variant="default"
         className="top-0 right-0 absolute bg-primary/90 group-hover:opacity-0 backdrop-blur-sm m-4 p-1 rounded-xs size-4 group-hover:translate-x-5"
