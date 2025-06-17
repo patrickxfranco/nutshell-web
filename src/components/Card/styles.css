@@ -1,0 +1,16 @@
+.card-active {
+  height: 200px;
+
+  #content-info {
+    opacity: 0%;
+    visibility: hidden;
+  }
+
+  img {
+    filter: brightness(100%) saturate(150%);
+  }
+
+  footer {
+    opacity: 100%;
+  }
+}

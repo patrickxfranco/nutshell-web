@@ -5,7 +5,7 @@ import type { ReactElement } from 'react';
 export function SearchArea(): ReactElement {
   return (
     <div className="w-full">
-      <Input placeholder="Buscar conteúdos" className="bg-white dark:bg-black sm:w-100" />
+      <Input placeholder="Buscar conteúdos" className="bg-white dark:bg-black sm:w-100 h-10" />
     </div>
   );
 }

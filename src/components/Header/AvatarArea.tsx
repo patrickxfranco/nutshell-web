@@ -4,11 +4,11 @@ import type { ReactElement } from 'react';
 
 export function AvatarArea(): ReactElement {
   return (
-    <div>
-      <Avatar className="rounded-sm size-9">
+    <>
+      <Avatar className="rounded-sm w-10 h-10">
         <AvatarFallback className="rounded-sm">PF</AvatarFallback>
         <AvatarImage src="https://www.github.com/patrickxfranco.png" />
       </Avatar>
-    </div>
+    </>
   );
 }
