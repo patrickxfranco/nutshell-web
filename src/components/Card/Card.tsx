@@ -18,7 +18,7 @@ export function Card({ name, description, coverUrl, type, ...rest }: CardProps):
 
   return (
     <div
-      className={` group sm:hidden relative border rounded-sm w-full h-30 overflow-hidden transition-all *:transition-all ${
+      className={`group sm:hidden relative border rounded-sm w-full h-30 overflow-hidden transition-all *:transition-all *:select-none ${
         active ? 'card-active' : null
       }`}
       onClick={() => setActive(true)}
@@ -37,7 +37,6 @@ export function Card({ name, description, coverUrl, type, ...rest }: CardProps):
         id="content-info"
         className="top-0 left-0 absolute group-active:opacity-0 group-hover:opacity-0 p-4 w-full group-active:-translate-x-5 group-hover:-translate-x-5"
       >
-        {/* {renderLogoOrName()} */}
         <CardHeader name={name} type={type} />
         <CardContent description={description} />
       </div>
@@ -47,12 +46,6 @@ export function Card({ name, description, coverUrl, type, ...rest }: CardProps):
 }
 
 function handleKeyDown({ currentTarget, code }: React.KeyboardEvent<HTMLDivElement>) {
-  console.log(code);
-
-  // VERIFICAR O INDEX DOS BOTÕES NO CARDFOOTER POIS ESTA BUGADO
-  // VERIFICAR ERRO ============================================
-  console.log(currentTarget.tabIndex);
-
   // ENTER OU NUMPADENTER FOCA NO CARD E APLICA A CLASSE CARD-ACTIVE
   if (code === 'Enter' || code === 'NumpadEnter') {
     currentTarget.classList.add('card-active');
