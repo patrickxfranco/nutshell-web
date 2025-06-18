@@ -46,19 +46,27 @@ export function Card({ name, description, coverUrl, type, ...rest }: CardProps):
   );
 }
 
-function handleKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
-  const target = e.currentTarget;
+function handleKeyDown({ currentTarget, code }: React.KeyboardEvent<HTMLDivElement>) {
+  console.log(code);
+
+  // VERIFICAR O INDEX DOS BOTÕES NO CARDFOOTER POIS ESTA BUGADO
+  // VERIFICAR ERRO ============================================
+  console.log(currentTarget.tabIndex);
 
   // ENTER OU NUMPADENTER FOCA NO CARD E APLICA A CLASSE CARD-ACTIVE
-  if (e.code === 'Enter' || e.code === 'NumpadEnter') {
-    target.classList.toggle('card-active');
-  } else if (e.code != 'ArrowRight') {
-    target.classList.remove('card-active');
+  if (code === 'Enter' || code === 'NumpadEnter') {
+    currentTarget.classList.add('card-active');
+  }
+
+  // ESC OU TAB REMOVE O FOCO DO CARD REMOVENDO A CLASSE CARD-ACTIVE
+  if (code === 'Escape' || code === 'Tab') {
+    currentTarget.classList.contains('card-active') ? currentTarget.classList.remove('card-active') : null;
   }
 
   // SETA PARA DIREITA APLICA CLASSE CARD-ACTIVE E FOCA NO PRIMEIRO BOTÃO DE AÇÃO DO CARD
-  if (e.code === 'ArrowRight') {
-    target.classList.add('card-active');
-    target.querySelector('footer')?.querySelector('div')?.querySelector('button')?.focus();
+  // PRECISA ARRUMAR POIS NÃO ESTÁ FUNCIONANDO DIREITO ==================================
+  if (code === 'ArrowRight') {
+    currentTarget.classList.add('card-active');
+    currentTarget.querySelector('footer')?.querySelector('div')?.querySelector('button')?.focus();
   }
 }

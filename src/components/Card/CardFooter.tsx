@@ -30,6 +30,7 @@ export function CardFooter({ name, setActive }: CardFooterProps): ReactElement {
           size="icon"
           title={button.title}
           key={index}
+          tabIndex={index}
           onClick={
             button.onClick
               ? (e) => {
