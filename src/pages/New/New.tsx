@@ -1,12 +1,14 @@
 import type { ReactElement } from 'react';
 
-import { Card } from '@/components/Card';
 import { PackagePlus } from 'lucide-react';
+
+import { Card } from '@/components/Card';
+import { NewForm } from '@/pages/New/NewForm';
 
 export function New(): ReactElement {
   return (
-    <div className="mx-4 pt-4">
-      <div className="sm:hidden flex flex-col gap-1 my-6">
+    <div className="flex flex-col gap-12 mx-4 pt-4">
+      <div className="sm:hidden flex flex-col gap-1 mt-6">
         <div className="flex flex-row items-center gap-3">
           <PackagePlus size={18} className="text-amber-300" />
           <h1 className="font-bold text-xl">Adicionar novo Conteúdo</h1>
@@ -32,6 +34,7 @@ export function New(): ReactElement {
           expanded
         />
       </section>
+      <NewForm />
     </div>
   );
 }
