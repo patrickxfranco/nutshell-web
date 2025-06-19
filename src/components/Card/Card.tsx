@@ -18,7 +18,7 @@ export function Card({ name, description, coverUrl, type, ...rest }: CardProps):
 
   return (
     <div
-      className={`group sm:hidden relative border rounded-sm w-full h-30 overflow-hidden transition-all *:transition-all *:select-none ${
+      className={`group sm:hidden relative border rounded-sm w-full h-30 overflow-hidden transition-all *:transition-all ease-in-out *:select-none ${
         active ? 'card-active' : null
       }`}
       onClick={() => setActive(true)}

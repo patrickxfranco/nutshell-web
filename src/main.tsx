@@ -3,7 +3,7 @@ import { RouterProvider } from 'react-router';
 
 import { router } from '@/router';
 
-import { ThemeProvider } from './components/ThemeProvider';
+import { ThemeProvider } from '@/components/ThemeProvider';
 
 const RootElement: HTMLElement = document.getElementById('root')!;
 
