@@ -8,7 +8,7 @@ import type { ReactElement } from 'react';
 
 interface CardFooterProps {
   name: string;
-  setActive: Function;
+  setActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface OptionButton {

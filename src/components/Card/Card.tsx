@@ -11,16 +11,20 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   description?: string;
   coverUrl: string;
   type: 'M' | 'S'; // M = MOVIE / S = SERIE
+  expanded?: boolean;
+  preview?: boolean;
 }
 
-export function Card({ name, description, coverUrl, type, ...rest }: CardProps): ReactElement {
+export function Card({ name, description, coverUrl, type, expanded, preview, ...rest }: CardProps): ReactElement {
   const [active, setActive] = useState<boolean>(false);
 
   return (
     <div
-      className={`group sm:hidden relative border rounded-sm w-full h-30 overflow-hidden transition-all *:transition-all ease-in-out *:select-none ${
-        active ? 'card-active' : null
-      }`}
+      className={`
+        ${expanded ? 'card-active' : null} 
+        ${preview ? 'pointer-events-none' : null}
+        ${active ? 'card-active' : null}
+         group sm:hidden relative border rounded-sm w-full h-30 overflow-hidden transition-all *:transition-all ease-in-out *:select-none `}
       onClick={() => setActive(true)}
       onBlur={() => setActive(false)}
       onKeyDown={handleKeyDown}
