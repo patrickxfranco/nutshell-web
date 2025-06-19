@@ -1,10 +1,20 @@
 import type { ReactElement } from 'react';
 
 import { Card } from '@/components/Card';
+import { PackagePlus } from 'lucide-react';
 
 export function New(): ReactElement {
   return (
-    <div className="mx-4 pt-8">
+    <div className="mx-4 pt-4">
+      <div className="sm:hidden flex flex-col gap-1 my-6">
+        <div className="flex flex-row items-center gap-3">
+          <PackagePlus size={18} className="text-amber-300" />
+          <h1 className="font-bold text-xl">Adicionar novo Conteúdo</h1>
+        </div>
+        <p className="ml-7 font-light text-muted-foreground text-xs">
+          Preencha o formulário abaixo para adicionar um novo conteúdo a sua lista
+        </p>
+      </div>
       <section id="card-preview" className="flex flex-col gap-4">
         <Card
           name="Game Of Thrones"

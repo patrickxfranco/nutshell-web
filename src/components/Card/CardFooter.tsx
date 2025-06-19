@@ -48,7 +48,7 @@ export function CardFooter({ name, setActive }: CardFooterProps): ReactElement {
   }
 
   return (
-    <footer className="bottom-0 left-0 absolute opacity-0 w-full">
+    <footer className="invisible bottom-0 left-0 absolute opacity-0 w-full">
       <div className="flex flex-row gap-2 bg-white/85 dark:bg-black/85 backdrop-blur-xs m-2 p-2 rounded-sm max-w-min">
         {renderButtons(optionButtons)}
       </div>
