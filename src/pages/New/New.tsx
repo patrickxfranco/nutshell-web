@@ -1,40 +1,103 @@
 import type { ReactElement } from 'react';
 
-import { PackagePlus } from 'lucide-react';
+import { Info } from 'lucide-react';
+import { Controller, useForm } from 'react-hook-form';
 
-import { Card } from '@/components/Card';
-import { NewForm } from '@/pages/New/NewForm';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Textarea } from '@/components/ui/textarea';
+
+interface FormData {
+  title: string;
+  type: string;
+  url: string;
+  cover: string;
+  description: string;
+}
 
 export function New(): ReactElement {
+  const { register, handleSubmit, control } = useForm<FormData>();
+
+  function handleAdd(data: FormData) {
+    console.log(data);
+  }
+
   return (
-    <div className="flex flex-col gap-12 mx-4 pt-4">
-      <div className="sm:hidden flex flex-col gap-1 mt-6">
-        <div className="flex flex-row items-center gap-3">
-          <PackagePlus size={18} className="text-amber-300" />
-          <h1 className="font-bold text-xl">Adicionar novo Conteúdo</h1>
+    <div className="mx-4 pt-4">
+      <form className="flex flex-col gap-8 mt-8" onSubmit={handleSubmit(handleAdd)}>
+        <div className="flex flex-col gap-2">
+          <label htmlFor="content-title" className="text-muted-foreground text-sm">
+            Título do conteúdo
+          </label>
+          <Input id="content-title" type="text" placeholder="Game Of Thrones" className="!bg-transparent h-11" {...register('title')} />
         </div>
-        <p className="ml-7 font-light text-muted-foreground text-xs">
-          Preencha o formulário abaixo para adicionar um novo conteúdo a sua lista
-        </p>
-      </div>
-      <section id="card-preview" className="flex flex-col gap-4">
-        <Card
-          name="Game Of Thrones"
-          description="Game of Thrones conta a história de um lugar onde uma força destruiu o equilíbrio das estações, há muito tempo. Em uma terra onde os verões podem durar vários anos e o inverno toda uma vida, as reivindicações e as forças sobrenaturais correm as portas do Reino dos Sete Reinos. A irmandade da Patrulha da Noite busca proteger o reino de cada criatura que pode vir de lá da Muralha, mas já não tem os recursos necessários para garantir a segurança de todos. Depois de um verão de dez anos, um inverno rigoroso promete chegar com um futuro mais sombrio. Enquanto isso, conspirações e rivalidades correm no jogo político pela disputa do Trono de Ferro, o símbolo do poder absoluto."
-          type="S"
-          coverUrl="https://images4.alphacoders.com/135/1356023.jpeg"
-          preview
-        />
-        <Card
-          name="Game Of Thrones"
-          description="Game of Thrones conta a história de um lugar onde uma força destruiu o equilíbrio das estações, há muito tempo. Em uma terra onde os verões podem durar vários anos e o inverno toda uma vida, as reivindicações e as forças sobrenaturais correm as portas do Reino dos Sete Reinos. A irmandade da Patrulha da Noite busca proteger o reino de cada criatura que pode vir de lá da Muralha, mas já não tem os recursos necessários para garantir a segurança de todos. Depois de um verão de dez anos, um inverno rigoroso promete chegar com um futuro mais sombrio. Enquanto isso, conspirações e rivalidades correm no jogo político pela disputa do Trono de Ferro, o símbolo do poder absoluto."
-          type="S"
-          coverUrl="https://images4.alphacoders.com/135/1356023.jpeg"
-          preview
-          expanded
-        />
-      </section>
-      <NewForm />
+        <div className="flex flex-col gap-2">
+          <label htmlFor="content-type" className="text-muted-foreground text-sm">
+            Tipo do conteúdo
+          </label>
+          <Controller
+            name="type"
+            control={control}
+            render={({ field }) => (
+              <RadioGroup className="flex flex-row items-center gap-4" value={field.value} onValueChange={field.onChange}>
+                <div className="flex flex-row items-center gap-2">
+                  <RadioGroupItem id="type-movie" value="m" />
+                  <Label htmlFor="type-movie">Filme</Label>
+                </div>
+                <div className="flex flex-row items-center gap-2">
+                  <RadioGroupItem id="type-serie" value="s" />
+                  <Label htmlFor="type-serie">Seriado</Label>
+                </div>
+              </RadioGroup>
+            )}
+          />
+        </div>
+        <div className="flex flex-col gap-2">
+          <label htmlFor="content-website" className="text-muted-foreground text-sm">
+            URL do site do conteúdo
+          </label>
+          <Input
+            id="content-website"
+            type="url"
+            placeholder="https://www.max.com/br/pt/shows/game-of-thrones"
+            className="!bg-transparent h-11"
+            {...register('url')}
+          />
+        </div>
+        <div className="flex flex-col gap-2">
+          <label htmlFor="content-cover" className="text-muted-foreground text-sm">
+            URL da capa do conteúdo
+          </label>
+          <Input
+            id="content-cover"
+            type="url"
+            placeholder="https://www.images.com/got.jpeg"
+            className="!bg-transparent h-11"
+            {...register('cover')}
+          />
+          <span className="flex flex-row items-start gap-2 group-focus:bg-red-500 mt-1 font-light text-blue-300/80 text-xs">
+            <Info className="pt-1 max-w-min max-h-min" />
+            Informação importante: se usar imagens com resoluções exorbitantes o seu uso de dados poderá ficar acima do esperado, de
+            preferência por imagens otimizadas.
+          </span>
+        </div>
+        <div className="flex flex-col gap-2">
+          <label htmlFor="content-description" className="text-muted-foreground text-sm">
+            Descrição do conteúdo
+          </label>
+          <Textarea
+            id="content-description"
+            placeholder="Seriado brabo demais"
+            className="!bg-transparent min-h-50"
+            {...register('description')}
+          />
+        </div>
+        <Button type="submit" variant="secondary" className="h-11">
+          Adicionar a minha lista
+        </Button>
+      </form>
     </div>
   );
 }
