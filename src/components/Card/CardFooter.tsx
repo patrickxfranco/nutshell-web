@@ -5,10 +5,12 @@ import { Button } from '@/components/ui/button';
 import type { ButtonVariants } from '@/components/ui/button';
 
 import type { ReactElement } from 'react';
+import { Link } from 'react-router';
 
 interface CardFooterProps {
   name: string;
   setActive: React.Dispatch<React.SetStateAction<boolean>>;
+  url?: string | undefined;
 }
 
 interface OptionButton {
@@ -16,35 +18,44 @@ interface OptionButton {
   icon: ReactElement;
   variant: ButtonVariants;
   onClick?: Function;
+  url?: string;
 }
 
-export function CardFooter({ name, setActive }: CardFooterProps): ReactElement {
-  const optionButtons = getOptionButtons(name, setActive);
+export function CardFooter({ name, setActive, url }: CardFooterProps): ReactElement {
+  const optionButtons = getOptionButtons(name, setActive, String(url));
 
   function renderButtons(optionButtons: OptionButton[]): ReactElement[] {
-    return optionButtons.map((button, index) => {
-      return (
-        <Button
-          type="button"
-          variant={button.variant}
-          size="icon"
-          title={button.title}
-          key={index}
-          tabIndex={index}
-          onClick={
-            button.onClick
-              ? (e) => {
-                  e.stopPropagation();
-                  button.onClick?.(false);
-                }
-              : undefined
-          }
-        >
-          {button.icon}
-          <span className="sr-only">{button.title}</span>
-        </Button>
-      );
-    });
+    return optionButtons.map((button, index) => (
+      <Button
+        {...(button.url ? { asChild: true } : {})}
+        type="button"
+        variant={button.variant}
+        size="icon"
+        title={button.title}
+        key={index}
+        tabIndex={index}
+        onClick={
+          button.onClick
+            ? (e) => {
+                e.stopPropagation();
+                button.onClick?.(false);
+              }
+            : undefined
+        }
+      >
+        {button.url ? (
+          <Link to={button.url} target="_blank">
+            {button.icon}
+            <span className="sr-only">{button.title}</span>
+          </Link>
+        ) : (
+          <>
+            {button.icon}
+            <span className="sr-only">{button.title}</span>
+          </>
+        )}
+      </Button>
+    ));
   }
 
   return (
@@ -56,7 +67,7 @@ export function CardFooter({ name, setActive }: CardFooterProps): ReactElement {
   );
 }
 
-function getOptionButtons(name: string, setActive: Function): OptionButton[] {
+function getOptionButtons(name: string, setActive: Function, url: string): OptionButton[] {
   return [
     {
       title: `Ver página interna de ${name}`,
@@ -67,6 +78,7 @@ function getOptionButtons(name: string, setActive: Function): OptionButton[] {
       title: `Visitar site cadastrado de ${name}`,
       icon: <Globe />,
       variant: 'ghost',
+      url: url,
     },
     {
       title: `Editar informações de ${name}`,

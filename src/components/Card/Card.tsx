@@ -6,17 +6,18 @@ import { CardContent } from '@/components/Card/CardContent';
 import { CardFooter } from '@/components/Card/CardFooter';
 import { CardHeader } from '@/components/Card/CardHeader';
 
+import { contentStorage } from '@/lib/storage';
+
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
-  name: string;
-  description?: string;
-  coverUrl: string;
-  type: 'M' | 'S'; // M = MOVIE / S = SERIE
+  identification: string;
   expanded?: boolean;
   preview?: boolean;
 }
 
-export function Card({ name, description, coverUrl, type, expanded, preview, ...rest }: CardProps): ReactElement {
+export function Card({ identification, expanded, preview, ...rest }: CardProps): ReactElement {
   const [active, setActive] = useState<boolean>(false);
+
+  const { cover, description, title, type, website } = contentStorage.get(identification);
 
   return (
     <div
@@ -29,22 +30,22 @@ export function Card({ name, description, coverUrl, type, expanded, preview, ...
       onBlur={() => setActive(false)}
       onKeyDown={handleKeyDown}
       key={rest.tabIndex}
-      title={name}
+      title={title}
       {...rest}
     >
       <img
-        src={coverUrl}
-        alt={`Imagem de ${name}`}
+        src={cover}
+        alt={`Imagem de ${title}`}
         className="brightness-30 group-hover:brightness-100 saturate-30 group-active:saturate-150 group-hover:saturate-150 w-full h-full object-cover aspect-video group-hover:scale-102"
       />
       <div
         id="content-info"
         className="top-0 left-0 absolute group-active:opacity-0 group-hover:opacity-0 p-4 w-full group-active:-translate-x-5 group-hover:-translate-x-5"
       >
-        <CardHeader name={name} type={type} />
+        <CardHeader name={title} type={type} />
         <CardContent description={description} />
       </div>
-      <CardFooter name={name} setActive={setActive} />
+      <CardFooter name={title} url={website} setActive={setActive} />
     </div>
   );
 }

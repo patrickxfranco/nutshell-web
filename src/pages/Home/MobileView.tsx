@@ -16,11 +16,15 @@ export function MobileView(): ReactElement {
     setContent(contentStorage.index());
   }, []);
 
-  function renderCards(content: ContentProps[]): ReactElement[] {
+  function renderCards(content: ContentProps[]): ReactElement[] | ReactElement {
+    if (content.length === 0) {
+      return <span className="m-auto py-12 text-muted-foreground">Nenhum conteúdo cadastrado</span>;
+    }
+
     return content.map((c, index) => {
       return (
         <li>
-          <Card name={c.title} description={c.description} coverUrl={c.cover} type={c.type} tabIndex={index} />
+          <Card identification={String(c.identification)} tabIndex={index} />
         </li>
       );
     });

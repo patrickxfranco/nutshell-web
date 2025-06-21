@@ -9,19 +9,24 @@ import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Textarea } from '@/components/ui/textarea';
 
+import { contentStorage } from '@/lib/storage';
+import { useNavigate } from 'react-router';
+
 interface FormData {
   title: string;
-  type: string;
-  url: string;
+  type: 'M' | 'S';
+  website: string;
   cover: string;
   description: string;
 }
 
 export function New(): ReactElement {
+  const navigate = useNavigate();
   const { register, handleSubmit, control } = useForm<FormData>();
 
-  function handleAdd(data: FormData) {
-    console.log(data);
+  function handleAdd({ title, type, website, cover, description }: FormData) {
+    contentStorage.create({ title, type, website, cover, description });
+    navigate('/');
   }
 
   return (
@@ -63,7 +68,7 @@ export function New(): ReactElement {
             type="url"
             placeholder="https://www.max.com/br/pt/shows/game-of-thrones"
             className="!bg-transparent h-11"
-            {...register('url')}
+            {...register('website')}
           />
         </div>
         <div className="flex flex-col gap-2">
