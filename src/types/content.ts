@@ -1,4 +1,5 @@
 export interface ContentProps {
+  identification: string;
   title: string;
   type: string;
   website: string;
