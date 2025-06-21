@@ -43,11 +43,11 @@ export function New(): ReactElement {
             render={({ field }) => (
               <RadioGroup className="flex flex-row items-center gap-4" value={field.value} onValueChange={field.onChange}>
                 <div className="flex flex-row items-center gap-2">
-                  <RadioGroupItem id="type-movie" value="m" />
+                  <RadioGroupItem id="type-movie" value="M" />
                   <Label htmlFor="type-movie">Filme</Label>
                 </div>
                 <div className="flex flex-row items-center gap-2">
-                  <RadioGroupItem id="type-serie" value="s" />
+                  <RadioGroupItem id="type-serie" value="S" />
                   <Label htmlFor="type-serie">Seriado</Label>
                 </div>
               </RadioGroup>
