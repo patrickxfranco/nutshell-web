@@ -4,7 +4,28 @@ import { Card } from '@/components/Card';
 
 import type { ReactElement } from 'react';
 
+import { useContext, useEffect } from 'react';
+import { ContentContext } from '@/context/ContentContext';
+import { contentStorage } from '@/lib/storage';
+import type { ContentProps } from '@/types/content';
+
 export function MobileView(): ReactElement {
+  const { content, setContent } = useContext(ContentContext);
+
+  useEffect(() => {
+    setContent(contentStorage.index());
+  }, []);
+
+  function renderCards(content: ContentProps[]): ReactElement[] {
+    return content.map((c, index) => {
+      return (
+        <li>
+          <Card name={c.title} description={c.description} coverUrl={c.cover} type={c.type} tabIndex={index} />
+        </li>
+      );
+    });
+  }
+
   return (
     <>
       <div className="sm:hidden flex flex-col gap-1 my-6">
@@ -16,7 +37,7 @@ export function MobileView(): ReactElement {
       </div>
       <main>
         <ul className="flex flex-col gap-4">
-          <li>
+          {/* <li>
             <Card
               name="Stranger Things"
               description="Situada no início dos anos 1980, Stranger Things se passa na cidade rural fictícia de Hawkins, Indiana. Como fachada, o laboratório da região realizava experimentos científicos para o Departamento de Energia Americano, quando na realidade, os pesquisadores ali investiram em experimentos com o paranormal e o sobrenatural, incluindo o uso de cobaias humanas. Não intencionalmente, eles criaram um portal para uma dimensão alternativa conhecida como Mundo Invertido, o que iria impactar a vida dos residentes da pequena cidade. Em 1983, quando Will Byers (Noah Schnapp), um menino de 12 anos, desaparece misteriosamente, o xerife Jim Hopper (David Harbour) inicia uma operação para encontrá-lo. Enquanto isso, Mike (Finn Wolfhard), Dustin (Gaten Matarazzo) e Lucas (Caleb McLaughlin), melhores amigos de Will, decidem procurá-lo por conta própria. Mas as investigações acabam levando o grupo em direção aos experimentos secretos do governo e a Eleven (Millie Bobby Brown), uma peculiar menina perdida na floresta. Assim como as crianças, a mãe Joyce Byers (Winona Ryder) está determinada e fará o impossível para rever o filho."
@@ -79,7 +100,8 @@ export function MobileView(): ReactElement {
               type="S"
               tabIndex={7}
             />
-          </li>
+          </li> */}
+          {renderCards(content)}
         </ul>
       </main>
     </>

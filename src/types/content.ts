@@ -1,7 +1,7 @@
 export interface ContentProps {
-  identification: string;
+  identification?: string;
   title: string;
-  type: string;
+  type: 'M' | 'S';
   website: string;
   cover: string;
   description: string;

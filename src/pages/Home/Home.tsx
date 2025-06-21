@@ -1,4 +1,4 @@
-import type { ReactElement } from 'react';
+import { type ReactElement } from 'react';
 import { MobileView } from '@/pages/Home/MobileView';
 
 export function Home(): ReactElement {
